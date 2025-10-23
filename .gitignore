@@ -1,3 +1,4 @@
+.gitignore
 db.sqlite3
 api/migrations
 .migrations
