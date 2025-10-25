@@ -58,3 +58,8 @@ class TimeList(APIView):
         times = Times.objects.all()
         serializer = TimeSerializer(times, many = True)
         return Response(serializer.data)
+    
+class AuthorDetail(RetrieveAPIView):
+    """View for Book detail/specific book acc. to PK"""
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer

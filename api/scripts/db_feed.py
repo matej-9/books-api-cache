@@ -1,8 +1,13 @@
 from api.models import Times, Book, Author
 import pandas as pd
 import requests
+from django.db import connection
 
-Times.objects.all().delete()
+def reset_db():
+    """Clear the table Book and resets 'id' sequence"""
+    Book.objects.all().delete()
+    with connection.cursor() as cursor:
+        cursor.execute("DELETE FROM sqlite_sequence WHERE name='api_book';")
 
 def book_scraper(url):
     """Scraper for getting books to feed our DB runned with script *python manage.py runscript db_feed*"""
@@ -32,7 +37,7 @@ def book_scraper(url):
             print(f'Error: {e}')
     
 
-
+reset_db()
 book_scraper(r'https://en.wikipedia.org/wiki/List_of_best-selling_books')
 
 # python manage.py runscript db_feed
