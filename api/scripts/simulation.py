@@ -17,13 +17,13 @@ def sending_requests(number):
     for request in range(number):
         endpoint = random.choice(ENDPOINTS)
         if endpoint == 'books/':
-            url = URL + random.choice([endpoint + str(random.randint(0,200)), endpoint])
+            url = URL + random.choice([endpoint + str(random.randint(1,100)), endpoint])
         elif endpoint == 'authors/':
-            url = URL + random.choice([endpoint + str(random.randint(0,19)), endpoint])
+            url = URL + random.choice([endpoint + str(random.randint(1,19)), endpoint])
         response = requests.get(url)
     print("Simulation complete")
 
-reset_db()
-sending_requests(100) # replace with number of requests required
+# reset_db()
+# sending_requests(100) # replace with number of requests required
 
 # python manage.py runscript simulation

@@ -1,0 +1,23 @@
+{% extends "rest_framework/base.html" %}
+
+{% block branding %}
+<a class="navbar-brand" href="/">My API</a>
+<a class="navbar-brand" href="{% url 'times' %}">Times</a>
+<a class="navbar-brand" href="{% url 'graph_view' %}">Show graph</a>
+{% endblock %}
+
+{% block content %}
+<h1>Request Times Graph</h1>
+    <form action="{% url 'graph_view' %}" method="post">
+        {% csrf_token %}
+        <label for="my_number">Number of requests:</label>
+        <input type="number" id="my_number" name="my_number" step="1" required>
+        <button type="submit" name="action" value="cache">Run simulation with cache</button>
+        <button type="submit" name="action" value="no_cache">Run simulation without cache</button>
+    </form>
+    <form action="{% url 'graph_view' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" name="action" value="reset">Reset Times</button>
+    </form>
+    <img src="data:image/png;base64,{{ graph_base64 }}" alt="Graph">
+{% endblock %}

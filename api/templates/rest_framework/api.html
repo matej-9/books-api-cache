@@ -1,0 +1,7 @@
+{% extends "rest_framework/base.html" %}
+
+{% block branding %}
+    <a class="navbar-brand" href="/">My API</a>
+    <a class="navbar-brand" href="{% url 'times' %}">Times</a>
+    <a class="navbar-brand" href="{% url 'graph_view' %}">Show graph</a>
+{% endblock %}

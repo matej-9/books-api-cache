@@ -7,6 +7,8 @@ from rest_framework.generics import RetrieveAPIView
 from .models import Book, Author, Times
 from .serializers import BookSerializer, AuthorSerializer, TimeSerializer
 from rest_framework import status
+from .scripts import graph, simulation
+
 
 # Decorator for measuring time of the requests and saving it into the DB as Times model#
 def performance_timer(func):
@@ -31,7 +33,7 @@ class BookList(APIView):
     def get(self, request):
         books = Book.objects.all()
         serializer = BookSerializer(books, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, template_name= 'api.html')
     def post(self, request):
         serializer = BookSerializer(data = request.data)
         if serializer.is_valid():
@@ -63,3 +65,24 @@ class AuthorDetail(RetrieveAPIView):
     """View for Book detail/specific book acc. to PK"""
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+
+def graph_view(request):
+    get_graph = graph.getting_graph()
+    if get_graph == None:
+        context = 'No data to show! Please run simulation!'
+        return render(request, context)
+    elif request.method == 'POST' and request.POST.get('action') == 'cache':
+        number_str = int(request.POST.get('my_number'))
+        simulation.sending_requests(number_str)
+        get_graph = graph.getting_graph()
+        context = {'graph_base64': get_graph}
+        return render(request, 'rest_framework/graph.html', context)
+    elif request.method == 'POST' and request.POST.get('action') == 'reset':
+        simulation.reset_db()
+        get_graph = graph.getting_graph()
+        context = {'graph_base64': get_graph}
+        return render(request, 'rest_framework/graph.html', context)
+    else:
+        context = {'graph_base64': get_graph}
+        return render(request, 'rest_framework/graph.html', context)
+
