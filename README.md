@@ -22,7 +22,7 @@ Then run script:
 This will feed our DB with books, more precisely books from table that can be found here:
 
 [Book Table URL](https://en.wikipedia.org/wiki/List_of_best-selling_books)
-(/books-api-cache/images/screenshot-2025-11-10_18-40-08.png)
+/books-api-cache/images/screenshot-2025-11-10_18-40-08.png
 
 You can feed DB with your own data if you want but you need to modify simple web scraper that can be found `/scripts/db_feed.py`
 
@@ -30,10 +30,10 @@ We need to set our URL for simulation -> `/scripts/simulation.py` usually localh
 
 We can start our server and we can navigate through Navbar to view our requests/performance graph and run simulations from our client.
 
-(/books-api-cache/images/screenshot-2025-11-10_19-26-16.png)
+/books-api-cache/images/screenshot-2025-11-10_19-26-16.png
 
 We can choose number of requests and run simulation with or without cache.
-(/books-api-cache/images/screenshot-2025-11-10_19-27-04.png)
+/books-api-cache/images/screenshot-2025-11-10_19-27-04.png
 
 ## Lessons Learned:
 
