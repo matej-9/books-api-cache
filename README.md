@@ -33,7 +33,7 @@ We can start our server and we can navigate through Navbar to view our requests/
 ![App screenshot2](/books-api-cache/images/screenshot-2025-11-10_19-26-16.png)
 
 We can choose number of requests and run simulation with or without cache.
-![App screenshot3](/books-api-cache/images/screenshot-2025-11-10_19-27-04.png)
+![App screenshot3](books-api-cache/images/screenshot-2025-11-10_19-27-04.png)
 
 ## Lessons Learned:
 
